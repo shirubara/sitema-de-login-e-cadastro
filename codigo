@@ -1,0 +1,53 @@
+import pandas as pd
+import time
+
+#banco de dados
+dados = {
+    'usuarios' :['shirubara123'],
+    'senhas' :['rafaelpinheirodasilva12']
+}
+
+dados_df = pd.DataFrame(dados)
+
+#interação usuario
+
+#login
+
+usuario_ou_novo = input('ja possui uma conta?[S/N]').upper()
+time.sleep(1)
+if usuario_ou_novo[0] == 'N':
+    print('Cadastro \n \n')
+    time.sleep(1)
+    usuario_usuario = input('Crie um nome de usuario: ').title()
+    while len(usuario_usuario) < 8:
+        print('senha muito curta ou não possui letras e numeros!')
+        time.sleep(1)
+        usuario_usuario = input('Crie um nome de usuario: ')
+    time.sleep(1)
+    senha_usuario = input('crie uma senha: ')
+    while len(senha_usuario) < 8:
+        print('sua senha deve ter no minimo 8 caracteres!')
+        senha_usuario = input('crie uma senha: ')
+    sucesso = ('conta criada com sucesso!').upper()
+    print('\n {}'.format(sucesso))
+    dados = {
+    'usuarios' :['shirubara123', usuario_usuario],
+    'senhas' :['rafaelpinheirodasilva12', senha_usuario],
+      }
+    dados_df = pd.DataFrame(dados)
+    time.sleep(1)
+    display(dados_df)
+elif usuario_ou_novo[0] == 'S':
+    print('Login \n \n')
+    time.sleep(1)
+    usuario_existente = input('Digite seu usuario: ')
+    time.sleep(1)
+    senha_existente = input('Digite sua senha: ')
+    while usuario_existente not in dados['usuarios'] and senha_existente not in dados['senhas']:
+        print('Usuario ou senha incorretos!')
+        usuario_existente = input('Digite seu usuario: ')
+        time.sleep(1)
+        senha_existente = input('Digite sua senha: ')
+        time.sleep(1)
+    sucesso = ('Login feito com sucesso!').upper()
+    print('\n {}'.format(sucesso))
